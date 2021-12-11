@@ -1,0 +1,16 @@
+{
+  "editor.tabSize": 2,
+  "prettier.semi": true,
+  "prettier.singleQuote": true,
+  "eslint.validate": [
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "javascriptreact"
+  ],
+  "css.validate": false, // for tailwind
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
