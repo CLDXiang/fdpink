@@ -1,3 +1,5 @@
+[toc]
+
 ## 安装依赖
 
 
@@ -66,3 +68,12 @@ Danke
 │   tsconfig.build.json
 │   tsconfig.json
 ```
+
+## 前端对接
+
+- 当从 Github 拉下其他协作者的 commit 中有新的 migration 引入时，请通过如下方式同步数据库
+
+  `npm run build && npm run typeorm migration:run` 。
+
+- 目前后端引入了 swagger 用以替代 Swagger 和 mock，`npm run start:dev` 启动项目后，可在 http://localhost:3000/api/#/ 访问。
+
