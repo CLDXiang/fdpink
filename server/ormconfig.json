@@ -1,0 +1,17 @@
+[
+  {
+    "name": "default",
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "username": "pink",
+    "password": "password",
+    "database": "pink",
+    "entities": ["dist/entities/*{ .ts,.js}"],
+    "synchronize": false,
+    "migrations": ["dist/migrations/*{.ts,.js}"],
+    "migrationsTableName": "migrations_typeorm",
+    "cli": { "migrationsDir": "src/migrations", "entityDir": "src/entities" },
+    "migrationsRun": true
+  }
+]

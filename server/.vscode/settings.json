@@ -1,0 +1,19 @@
+{
+    "eslint.nodePath": "../node_modules",
+    "eslint.validate": [
+        "typescript",
+        "typescriptreact",
+        "javascript",
+        "javascriptreact",
+    ],
+    "eslint.format.enable": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "cSpell.words": [
+        "nestjs",
+        "typeorm",
+        "watchees",
+        "zhifeng"
+    ],
+}
