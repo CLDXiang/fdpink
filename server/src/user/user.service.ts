@@ -1,4 +1,4 @@
-import { ConflictException, Inject, Injectable, NotFoundException, NotImplementedException } from '@nestjs/common';
+import { ConflictException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { RoleType, User } from 'src/entities/user';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -74,9 +74,6 @@ export class UserService {
   }
 
   async modifyUserInfo(id: number, req: PatchUserInfoRequest): Promise<User> {
-    if (req.email !== undefined) {
-      throw new NotImplementedException('抱歉，修改邮箱功能还在开发中哦！');
-    }
     let user = await this.findUserById(id);
     if (user === undefined) {
       throw new NotFoundException('所修改的用户不存在');

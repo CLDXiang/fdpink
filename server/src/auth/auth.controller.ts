@@ -1,7 +1,7 @@
 import {
   Controller,
   Post,
-  Request,
+  Req,
   UseGuards,
   ValidationPipe,
   Body,
@@ -14,7 +14,7 @@ import { MailTemplateType } from 'src/mail/template';
 import { MailService } from 'src/mail/mail.service';
 import { MAIL_VERIFICATION_ENABLED } from 'src/utils/config';
 import { UserService } from 'src/user/user.service';
-import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { DevGuard } from 'src/utils/dev.guard';
 import { RegisterDto } from './dto/register.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
@@ -47,12 +47,13 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
+  @ApiOperation({ summary: '登陆' })
   @ApiBody({ description: '邮箱验证测试', type: LoginDto })
   @ApiResponse({
     status: HttpStatus.CREATED,
     type: JwtRetDto,
   })
-  async login(@Request() req) {
+  async login(@Req() req) {
     // local.strategy.ts handles the login, and authService only needs to sign the JWT
     return this.authService.sign(req.user);
   }
@@ -60,6 +61,7 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @Post('jwt/mail')
   @ApiBearerAuth('JWT')
+  @ApiOperation({ summary: '登陆后学邮验证码发送' })
   @ApiResponse({
     status: HttpStatus.CREATED,
     type: SucceedDto,
@@ -72,7 +74,7 @@ export class AuthController {
     status: HttpStatus.CONFLICT,
     description: '1.验证需绑定复旦学邮\n2.该学邮已激活\n3.已验证通过',
   })
-  async sendJwtMail(@Request() req) {
+  async sendJwtMail(@Req() req) {
     if (req.user.activated) {
       this.loggerService.warn(`user ${req.user.id} sendJwtMail after validation`);
       throw new ConflictException('已验证通过');
@@ -93,6 +95,7 @@ export class AuthController {
 
   @UseGuards(DevGuard)
   @Post('test-mail')
+  @ApiOperation({ summary: '邮箱验证测试' })
   @ApiResponse({
     status: HttpStatus.TOO_MANY_REQUESTS,
     description: '1.该邮箱地址申请了太多验证码，请检查邮箱或者耐心等待邮件\n2.系统繁忙中，请稍后再试',
@@ -104,17 +107,19 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Post('elearning-verify')
+  @ApiOperation({ summary: '登陆后 Elearning 认证激活' })
   @ApiResponse({
     status: HttpStatus.CREATED,
     type: SucceedDto,
   })
   @ApiBearerAuth('JWT')
-  async elearningVerify(@Body(new ValidationPipe()) dto: ElearningVerifyDto, @Request() req) {
+  async elearningVerify(@Body(new ValidationPipe()) dto: ElearningVerifyDto, @Req() req) {
     return this.authService.elearningVerify(dto.token, req.user.id);
   }
 
   @UseGuards(JwtAuthGuard)
   @Post('jwt/verify')
+  @ApiOperation({ summary: '登陆后邮箱认证（激活）的验证码确认' })
   @ApiBearerAuth('JWT')
   @ApiResponse({
     status: HttpStatus.CONFLICT,
@@ -129,7 +134,7 @@ export class AuthController {
     type: JwtRetDto,
   })
   @ApiBody({ description: '邮箱验证', type: JwtMailVerifyDto })
-  async jwtVerify(@Body(new ValidationPipe()) mail: JwtMailVerifyDto, @Request() req) {
+  async jwtVerify(@Body(new ValidationPipe()) mail: JwtMailVerifyDto, @Req() req) {
     if (req.user.activated) {
       this.loggerService.warn(`user ${req.user.id} jwtVerify after validation`);
       throw new ConflictException('已验证通过');
@@ -157,6 +162,7 @@ export class AuthController {
   }
 
   @Post('register')
+  @ApiOperation({ summary: '注册' })
   @ApiResponse({
     status: HttpStatus.CONFLICT,
     description: '用户名或邮箱已经被占用',
@@ -175,6 +181,7 @@ export class AuthController {
   }
 
   @Post('mail')
+  @ApiOperation({ summary: '非登陆态下的邮箱验证码发送，用于忘记密码、重置邮箱' })
   @ApiResponse({
     status: HttpStatus.TOO_MANY_REQUESTS,
     description: '1.该邮箱地址申请了太多验证码，请检查邮箱或者耐心等待邮件\n2.系统繁忙中，请稍后再试',
@@ -189,6 +196,7 @@ export class AuthController {
   }
 
   @Put('mail')
+  @ApiOperation({ summary: '修改绑定邮箱（需验证码确认）' })
   @ApiResponse({
     status: HttpStatus.BAD_REQUEST,
     description: '验证码错误，或者已经失效',
@@ -212,6 +220,7 @@ export class AuthController {
 
   // forget password and then change through mail verification
   @Put('password')
+  @ApiOperation({ summary: '修改密码（需验证码确认）' })
   @ApiResponse({
     status: HttpStatus.BAD_REQUEST,
     description: '验证码错误，或者已经失效',
@@ -236,6 +245,7 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @Patch('password')
   @ApiBearerAuth('JWT')
+  @ApiOperation({ summary: '登陆后修改密码（需要旧密码）' })
   @ApiResponse({
     status: HttpStatus.BAD_REQUEST,
     description: '旧密码错误',
@@ -245,7 +255,7 @@ export class AuthController {
     type: SucceedDto,
   })
   @ApiBody({ description: '修改密码', type: ChangePasswordDto })
-  async changePassword(@Body(new ValidationPipe()) dto: ChangePasswordDto, @Request() req) {
+  async changePassword(@Body(new ValidationPipe()) dto: ChangePasswordDto, @Req() req) {
     return this.authService.changePassword(req.user.id, dto.oldPassword, dto.newPassword);
   }
 }
