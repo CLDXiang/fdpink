@@ -25,10 +25,10 @@ module.exports = {
       },
     ],
     'prettier/prettier': [
-      'error',
+      'warn',
       {
         endOfLine: 'auto',
-        semi: false,
+        semi: true,
         singleQuote: true,
         tabWidth: 2,
         trailingComma: 'all',
@@ -43,4 +43,4 @@ module.exports = {
       },
     },
   ],
-}
+};
