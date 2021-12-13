@@ -4,33 +4,33 @@
 
 
 ```bash
-$ npm install
+$ yarn
 ```
 
 ## 运行项目
 
 ```bash
 # development
-$ npm run start
+$ yarn start
 
 # watch mode
-$ npm run start:dev
+$ yarn start:dev
 
 # production mode
-$ npm run start:prod
+$ yarn start:prod
 ```
 
 ## 测试
 
 ```bash
 # unit tests
-$ npm run test
+$ yarn test
 
 # e2e tests
-$ npm run test:e2e
+$ yarn test:e2e
 
 # test coverage
-$ npm run test:cov
+$ yarn test:cov
 ```
 
 ## 项目结构
@@ -43,7 +43,7 @@ Danke
 |
 └───dist* # build 生成的编译后的代码
 └───docs # 项目文档
-└───node_modules* # npm install 安装的项目依赖包
+└───node_modules* # yarn install 安装的项目依赖包
 |
 └───src # 项目功能代码
 │   └───auth # 负责用户注册、登陆、修改密码等的模块
@@ -73,7 +73,7 @@ Danke
 
 - 当从 Github 拉下其他协作者的 commit 中有新的 migration 引入时，请通过如下方式同步数据库
 
-  `npm run build && npm run typeorm migration:run` 。
+  `yarn build && yarn typeorm migration:run` 。
 
-- 目前后端引入了 swagger 用以替代 Swagger 和 mock，`npm run start:dev` 启动项目后，可在 http://localhost:3000/api/#/ 访问。
+- 目前后端引入了 swagger 用以替代 Swagger 和 mock，`yarn start:dev` 启动项目后，可在 http://localhost:3000/api/#/ 访问。
 
