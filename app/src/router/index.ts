@@ -29,12 +29,12 @@ const routes: Array<RouteRecordRaw> = [
     component: LoginPage,
   },
   {
-    path: './register',
+    path: '/register',
     name: 'RegisterPage',
     component: RegisterPage,
   },
   {
-    path: './search',
+    path: '/search',
     name: 'SearchPage',
     component: SearchPage,
     props: (route) => ({ q: route.query.q }),
