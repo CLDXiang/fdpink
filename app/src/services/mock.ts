@@ -1,6 +1,6 @@
 import BaseService from './BaseService';
 
-export class MockService extends BaseService {
+class MockService extends BaseService {
   constructor() {
     super('mock');
   }
@@ -14,3 +14,5 @@ export class MockService extends BaseService {
     return data;
   }
 }
+
+export const mockService = new MockService();
