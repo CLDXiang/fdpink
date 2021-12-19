@@ -1,7 +1,6 @@
 <template>
-  <CardLayout></CardLayout>
+  <div></div>
 </template>
 
 <script lang="ts" setup>
-import CardLayout from './CardLayout.vue';
 </script>

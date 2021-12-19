@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "preinstall": "cd .. && yarn",
-    "dev": "vue-cli-service serve",
+    "dev": "NODE_ENV=development vue-cli-service serve --host localhost",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
