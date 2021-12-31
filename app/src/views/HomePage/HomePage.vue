@@ -1,3 +1,8 @@
+<script lang="ts" setup>
+import { NavBar } from '@/components'
+import { FeedBackCard } from './components'
+</script>
+
 <template>
   <div class="w-full h-full overflow-y-scroll">
     <NavBar />
@@ -8,8 +13,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { NavBar } from '@/components';
-import { FeedBackCard } from './components';
-</script>

@@ -1,1 +1,1 @@
-export { CourseCard, FeedBackCard } from './Cards';
+export { CourseCard, FeedBackCard } from './Cards'
