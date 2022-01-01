@@ -25,14 +25,52 @@ export class PortService {
     return ins.name.toLowerCase() + '@@' + ins.department.toLowerCase();
   }
 
+  knownDup2 = new Map<string, InstructorInfo>()
+    .set('李斌', {
+      deparment: ['计算机科学技术学院', '软件学院', '信息科学与工程学院'],
+      teach: ['SOFT130049', 'INFO130359'],
+    });
+
   knownDuplicator = new Map<string, InstructorInfo>()
     .set('赵一鸣', {
       deparment: ['计算机科学技术学院', '软件学院'],
       teach: ['COMP130005', 'SOFT130014', 'SOFT130020', 'SOFT130012'],
     })
+    .set('郭跃飞', {
+      deparment: ['计算机科学技术学院', '信息科学与工程学院'],
+      teach: ['MATH120017', 'COMP130006'],
+    })
+    .set('汪卫', {
+      deparment: ['计算机科学技术学院', '信息科学与工程学院'],
+      teach: ['COMP130020', 'INFO130373'],
+    })
+    .set('危辉', {
+      deparment: ['计算机科学技术学院', '信息科学与工程学院'],
+      teach: ['COMP130031', 'INFO130358'],
+    })
+    .set('杨夙', {
+      deparment: ['计算机科学技术学院', '国际关系与公共事务学院'],
+      teach: ['COMP110031', 'POLI110062'],
+    })
+    .set('章忠志', {
+      deparment: ['计算机科学技术学院', '国际关系与公共事务学院'],
+      teach: ['COMP120004', 'POLI110062'],
+    })
+    .set('陈碧欢', {
+      deparment: ['计算机科学技术学院', '软件学院'],
+      teach: ['COMP130112', 'SOFT130004'],
+    })
     .set('邱锡鹏', {
       deparment: ['计算机科学技术学院', '大数据学院'],
       teach: ['DATA130006', 'COMP130014'],
+    })
+    .set('姜育刚', {
+      deparment: ['计算机科学技术学院', '大数据学院'],
+      teach: ['COMP130137', 'DATA130014'],
+    })
+    .set('吴杰', {
+      deparment: ['计算机科学技术学院', '软件学院'],
+      teach: ['COMP130116', 'SOFT130013'],
     })
     .set('周向东', {
       deparment: ['计算机科学技术学院', '大数据学院'],
@@ -146,17 +184,29 @@ export class PortService {
       deparment: ['材料科学系', '化学系'],
       teach: ['CHEM119005'],
     })
-    .set('杨芃原', {
-      deparment: ['化学系', '临床医学院'],
-      teach: ['CHEM130018', 'MED130336'],
-    })
     .set('梅永丰', {
       deparment: ['材料科学系', '复旦暑期国际项目'],
       teach: ['MATE110013'],
     })
+    .set('梁子骐', {
+      deparment: ['材料科学系', '复旦暑期国际项目'],
+      teach: ['MATE130052', 'MATE170002'],
+    })
+    .set('杨芃原', {
+      deparment: ['化学系', '临床医学院'],
+      teach: ['CHEM130018', 'MED130336'],
+    })
+    .set('高海峰', {
+      deparment: ['基础医学院', '数学科学学院'],
+      teach: ['MED130041', 'MATH110020'],
+    })
     .set('陆超', {
       deparment: ['基础医学院', '护理学院'],
       teach: ['MED130144', 'GNUR130010'],
+    })
+    .set('洪晓武', {
+      deparment: ['基础医学院', '护理学院'],
+      teach: ['MED130041', 'GNUR130008'],
     })
     .set('刘雷', {
       deparment: ['基础医学院', '护理学院'],
@@ -194,9 +244,9 @@ export class PortService {
       deparment: ['护理学院', '体育教学部'],
       teach: ['GNUR110010', 'PEDU110091'],
     })
-    .set('马忠法', {
-      deparment: ['法学院', '管理学院'],
-      teach: ['LAWS110014', 'MANA130323'],
+    .set('李静', {
+      deparment: ['护理学院', '药学院'],
+      teach: ['NURS130068', 'PHAR130140'],
     })
     .set('严金海', {
       deparment: ['数学科学学院', '管理学院'],
@@ -206,6 +256,14 @@ export class PortService {
       deparment: ['数学科学学院', '经济学院'],
       teach: ['MATH130019', 'ECON130105'],
     })
+    .set('赵宇微', {
+      deparment: ['数学科学学院', '经济学院'],
+      teach: ['MATH130060', 'MATH120017'],
+    })
+    .set('林伟', {
+      deparment: ['数学科学学院', '信息科学与工程学院'],
+      teach: ['MATH130015', 'INFO130357'],
+    })
     .set('杭国明', {
       deparment: ['数学科学学院', '旅游学系', '药学院', '历史学系'],
       teach: ['MATH119002', 'TOUR130001', 'PHAR130049', 'SOSC120017'],
@@ -213,6 +271,10 @@ export class PortService {
     .set('苏仰锋', {
       deparment: ['数学科学学院', '大数据学院'],
       teach: ['MATH130072', 'DATA130002'],
+    })
+    .set('谢践生', {
+      deparment: ['数学科学学院', '大数据学院'],
+      teach: ['MATH130015', 'DATA130024'],
     })
     .set('高卫国', {
       deparment: ['数学科学学院', '大数据学院'],
@@ -226,13 +288,21 @@ export class PortService {
       deparment: ['数学科学学院', '物理学系'],
       teach: ['MATH120011', 'PHYS130002'],
     })
+    .set('应坚刚', {
+      deparment: ['数学科学学院', '复旦暑期国际项目', '经济学院'],
+      teach: ['MATH130014', 'MATH170001', 'MATH120016'],
+    })
     .set('苏长和', {
       deparment: ['国际关系与公共事务学院', '马克思主义学院'],
       teach: ['SOSC120011', 'PTSS110068'],
     })
+    .set('熊易寒', {
+      deparment: ['国际关系与公共事务学院', '数学科学学院'],
+      teach: ['POLI130149', 'MATH110020'],
+    })
     .set('沈逸', {
-      deparment: ['国际关系与公共事务学院', '教务处'],
-      teach: ['POLI130002', 'POLI116001'],
+      deparment: ['国际关系与公共事务学院', '教务处', '马克思主义学院'],
+      teach: ['POLI130002', 'POLI116001', 'PTSS110079'],
     })
     .set('李瑞昌', {
       deparment: ['国际关系与公共事务学院', '继续教育学院'],
@@ -250,6 +320,10 @@ export class PortService {
       deparment: ['国际关系与公共事务学院', '社会发展与公共政策学院'],
       teach: ['POLI130153', 'SOCI119003'],
     })
+    .set('黄河', {
+      deparment: ['国际关系与公共事务学院', '中国语言文学系'],
+      teach: ['POLI130027', 'CHIN120013'],
+    })
     .set('刘永涛', {
       deparment: ['国际关系与公共事务学院', '复旦暑期国际项目'],
       teach: ['POLI130108', 'POLI170001'],
@@ -262,25 +336,53 @@ export class PortService {
       deparment: ['国际关系与公共事务学院', '复旦暑期国际项目'],
       teach: ['POLI130149', 'POLI170006'],
     })
+    .set('王浩', {
+      deparment: ['国际关系与公共事务学院', '复旦暑期国际项目'],
+      teach: ['POLI130030', 'POLI170007'],
+    })
+    .set('邹真真', {
+      deparment: ['国际关系与公共事务学院', '国际文化交流学院'],
+      teach: ['POLI130206', 'ICES130136'],
+    })
+    .set('刘宇', {
+      deparment: ['经济学院', '复旦暑期国际项目'],
+      teach: ['SOSC120020', 'ECON170007'],
+    })
     .set('李丹', {
       deparment: ['经济学院', '复旦暑期国际项目'],
       teach: ['SOSC120004', 'ECON130200'],
+    })
+    .set('樊潇彦', {
+      deparment: ['经济学院', '复旦暑期国际项目'],
+      teach: ['ECON130193', 'ECON170010'],
     })
     .set('谢一青', {
       deparment: ['经济学院', '复旦暑期国际项目'],
       teach: ['SOSC120004', 'ECON170006'],
     })
+    .set('陈硕', {
+      deparment: ['经济学院', '国际关系与公共事务学院'],
+      teach: ['ECON130010', 'POLI110062'],
+    })
     .set('田素华', {
       deparment: ['经济学院', '社会发展与公共政策学院'],
       teach: ['ECON130022', 'SOCI119003'],
+    })
+    .set('尹晨', {
+      deparment: ['经济学院', '社会发展与公共政策学院'],
+      teach: ['ECON110027', 'SOCI130200'],
+    })
+    .set('王丽莉', {
+      deparment: ['经济学院', '数学科学学院'],
+      teach: ['SOSC120004', 'MATH130002'],
     })
     .set('刘庆富', {
       deparment: ['经济学院', '大数据学院'],
       teach: ['ECON130175', 'DATA130001'],
     })
     .set('吴力波', {
-      deparment: ['经济学院', '大数据学院'],
-      teach: ['ECON130012', 'DATA130001'],
+      deparment: ['经济学院', '大数据学院', '大气与海洋科学系'],
+      teach: ['ECON130012', 'DATA130001', 'ATMO115001'],
     })
     .set('何喜有', {
       deparment: ['经济学院', '复旦暑期国际项目'],
@@ -289,6 +391,10 @@ export class PortService {
     .set('张军', {
       deparment: ['经济学院', '复旦暑期国际项目'],
       teach: ['ECON170008', 'SOSC120007'],
+    })
+    .set('张涛', {
+      deparment: ['经济学院', '马克思主义学院'],
+      teach: ['SOSC120005', 'PTSS110079'],
     })
     .set('潘天舒', {
       deparment: ['社会发展与公共政策学院', '基础医学院'],
@@ -299,8 +405,8 @@ export class PortService {
       teach: ['SOCI130054', 'MED116002'],
     })
     .set('付芳', {
-      deparment: ['社会发展与公共政策学院', '基础医学院'],
-      teach: ['SOCI130073', 'MED116002'],
+      deparment: ['社会发展与公共政策学院', '基础医学院', '护理学院', '临床医学院'],
+      teach: ['SOCI130073', 'MED116002', 'NURS130075', 'MED130416'],
     })
     .set('朱剑峰', {
       deparment: ['社会发展与公共政策学院', '复旦暑期国际项目', '基础医学院'],
@@ -314,6 +420,14 @@ export class PortService {
       deparment: ['社会发展与公共政策学院', '复旦暑期国际项目'],
       teach: ['SOCI130039'],
     })
+    .set('杨锦绵', {
+      deparment: ['社会发展与公共政策学院', '复旦暑期国际项目'],
+      teach: ['SOSC120013', 'SOCI170006'],
+    })
+    .set('田丰', {
+      deparment: ['社会发展与公共政策学院', '复旦暑期国际项目'],
+      teach: ['SOCI130147', 'SOCI170007'],
+    })
     .set('于海', {
       deparment: ['社会发展与公共政策学院', '复旦暑期国际项目'],
       teach: ['SOCI130097', 'SOCI130137'],
@@ -326,9 +440,17 @@ export class PortService {
       deparment: ['社会发展与公共政策学院', '继续教育学院'],
       teach: ['SOSC120012', 'SOCI120002'],
     })
+    .set('李洁', {
+      deparment: ['社会发展与公共政策学院', '学生工作部（处）'],
+      teach: ['SOCI110023', 'PTSS110058'],
+    })
     .set('司佳', {
       deparment: ['历史学系', '复旦暑期国际项目'],
       teach: ['HIST130126', 'HIST170004'],
+    })
+    .set('孙青', {
+      deparment: ['历史学系', '复旦暑期国际项目'],
+      teach: ['HIST130224', 'HIST170006'],
     })
     .set('冯玮', {
       deparment: ['历史学系', '国际关系与公共事务学院'],
@@ -338,9 +460,29 @@ export class PortService {
       deparment: ['历史学系', '基础医学院'],
       teach: ['HIST130229', 'MED130329'],
     })
+    .set('段志强', {
+      deparment: ['历史学系', '文物与博物馆学系'],
+      teach: ['HIST130192', 'MUSE130088'],
+    })
+    .set('邓杰', {
+      deparment: ['历史学系', '马克思主义学院', '复旦暑期国际项目'],
+      teach: ['HIST130223', 'PTSS110008', 'PTSS170001'],
+    })
     .set('张晓蓉', {
       deparment: ['管理学院', '复旦暑期国际项目'],
       teach: ['MANA130004', 'MANA170003'],
+    })
+    .set('方曙红', {
+      deparment: ['管理学院', '复旦暑期国际项目'],
+      teach: ['MANA130004', 'MANA170010'],
+    })
+    .set('戴伟辉', {
+      deparment: ['管理学院', '复旦暑期国际项目'],
+      teach: ['MANA110005', 'MANA170008'],
+    })
+    .set('古定威', {
+      deparment: ['管理学院', '经济学院'],
+      teach: ['SOSC120004', 'SOSC120017'],
     })
     .set('谢静', {
       deparment: ['新闻学院', '复旦暑期国际项目'],
@@ -358,17 +500,21 @@ export class PortService {
       deparment: ['新闻学院', '社会发展与公共政策学院'],
       teach: ['JOUR130186', 'SOCI130029'],
     })
-    .set('邓杰', {
-      deparment: ['马克思主义学院', '复旦暑期国际项目'],
-      teach: ['PTSS110008', 'PTSS170001'],
-    })
     .set('刘学礼', {
       deparment: ['马克思主义学院', '基础医学院'],
       teach: ['PTSS110067', 'MED130215'],
     })
+    .set('马忠法', {
+      deparment: ['法学院', '管理学院'],
+      teach: ['LAWS110014', 'MANA130323'],
+    })
     .set('张乃根', {
       deparment: ['法学院', '复旦暑期国际项目'],
       teach: ['LAWS130016', 'LAWS170002'],
+    })
+    .set('史大晓', {
+      deparment: ['法学院', '复旦暑期国际项目'],
+      teach: ['LAWS130018', 'LAWS170005'],
     })
     .set('王俊', {
       deparment: ['法学院', '复旦暑期国际项目'],
@@ -397,6 +543,10 @@ export class PortService {
     .set('陈建民', {
       deparment: ['环境科学与工程系', '大气与海洋科学系'],
       teach: ['ENVI119006', 'ATMO110001'],
+    })
+    .set('成天涛', {
+      deparment: ['环境科学与工程系', '大气与海洋科学系'],
+      teach: ['ENVI130023', 'ATMO130004'],
     })
     .set('沈涵', {
       deparment: ['旅游学系', '复旦暑期国际项目', '历史学系'],
@@ -470,6 +620,14 @@ export class PortService {
       deparment: ['信息科学与工程学院', '物理学系'],
       teach: ['INFO130102', 'PHYS120014'],
     })
+    .set('盛卫东', {
+      deparment: ['物理学系', '数学科学学院'],
+      teach: ['PHYS130103', 'MATH110020'],
+    })
+    .set('乐永康', {
+      deparment: ['物理学系', '核科学与技术系'],
+      teach: ['PHYS120015', 'TCPH130048'],
+    })
     .set('林青', {
       deparment: ['信息科学与工程学院', '微电子学院'],
       teach: ['INFO130037'],
@@ -503,8 +661,8 @@ export class PortService {
       teach: ['PTSS110059', 'PTSS110058'],
     })
     .set('白鸽', {
-      deparment: ['学生工作部（处）', '马克思主义学院', '公共卫生学院'],
-      teach: ['PTSS110061', 'PTSS110060', 'PHPM130095'],
+      deparment: ['学生工作部（处）', '马克思主义学院', '公共卫生学院', '社会发展与公共政策学院'],
+      teach: ['PTSS110061', 'PTSS110060', 'PHPM130095', 'SOCI110023'],
     })
     .set('茅盾', {
       deparment: ['学生工作部（处）', '马克思主义学院'],
@@ -575,8 +733,8 @@ export class PortService {
       teach: ['PTSS110059', 'PTSS110058'],
     })
     .set('于专宗', {
-      deparment: ['学生工作部（处）', '公共卫生学院'],
-      teach: ['PHPM130095', 'PTSS010001'],
+      deparment: ['学生工作部（处）', '公共卫生学院', '社会发展与公共政策学院'],
+      teach: ['PHPM130095', 'PTSS010001', 'SOCI110023'],
     })
     .set('郑川', {
       deparment: ['核科学与技术系', '物理学系'],
@@ -597,6 +755,10 @@ export class PortService {
     .set('姚燕瑾', {
       deparment: ['大学英语教学部', '国际文化交流学院'],
       teach: ['ENGL110025', 'ICES110010'],
+    })
+    .set('郭永秉', {
+      deparment: ['中国语言文学系', '数学科学学院'],
+      teach: ['CHIN119022', 'MATH110020'],
     })
     .set('蒋勇', {
       deparment: ['中国语言文学系', '管理学院'],
@@ -623,8 +785,8 @@ export class PortService {
       teach: ['PHIL130172', 'MED116002'],
     })
     .set('王国豫', {
-      deparment: ['哲学学院', '基础医学院'],
-      teach: ['PHIL130059', 'MED130329'],
+      deparment: ['哲学学院', '基础医学院', '物理学系'],
+      teach: ['PHIL130059', 'MED130329', 'PHYS110020'],
     })
     .set('汤铭钧', {
       deparment: ['哲学学院', '外国语言文学学院'],
@@ -637,6 +799,14 @@ export class PortService {
     .set('李胜海', {
       deparment: ['哲学学院', '外国语言文学学院'],
       teach: ['FORE110057', 'PHIL130154'],
+    })
+    .set('冯平', {
+      deparment: ['哲学学院', '继续教育学院'],
+      teach: ['PHIL110015'],
+    })
+    .set('林晖', {
+      deparment: ['哲学学院', '新闻学院'],
+      teach: ['PHIL130015', 'JOUR130202'],
     })
     .set('马建敏', {
       deparment: ['航空航天系', '信息科学与工程学院'],
@@ -653,6 +823,22 @@ export class PortService {
     .set('王伶俐', {
       deparment: ['微电子学院', '信息科学与工程学院'],
       teach: ['INFO130115'],
+    })
+    .set('范益波', {
+      deparment: ['微电子学院', '信息科学与工程学院'],
+      teach: ['MICR130003', 'INFO130331'],
+    })
+    .set('陶新萱', {
+      deparment: ['微电子学院', '信息科学与工程学院'],
+      teach: ['MICR130003', 'INFO120010'],
+    })
+    .set('黄煜梅', {
+      deparment: ['微电子学院', '信息科学与工程学院'],
+      teach: ['MICR120001', 'INFO120002'],
+    })
+    .set('唐长文', {
+      deparment: ['微电子学院', '信息科学与工程学院'],
+      teach: ['MICR120001', 'INFO120002'],
     })
     .set('周鹏', {
       deparment: ['微电子学院', '信息科学与工程学院'],
@@ -790,13 +976,29 @@ export class PortService {
       deparment: ['艺术教育中心', '教务处'],
       teach: ['FINE110060'],
     })
+    .set('汤筠冰', {
+      deparment: ['艺术教育中心', '新闻学院'],
+      teach: ['FINE110063', 'JOUR130125'],
+    })
     .set('王震', {
       deparment: ['体育教学部', '复旦暑期国际项目'],
       teach: ['PEDU110053', 'PEDU170002'],
     })
+    .set('丰萍', {
+      deparment: ['体育教学部', '复旦暑期国际项目'],
+      teach: ['PEDU110107', 'PEDU170001'],
+    })
+    .set('孔繁辉', {
+      deparment: ['体育教学部', '复旦暑期国际项目'],
+      teach: ['PEDU110120', 'PEDU170002'],
+    })
     .set('韦佶', {
       deparment: ['国际文化交流学院', '复旦暑期国际项目'],
       teach: ['ICES110012'],
+    })
+    .set('范翔翔', {
+      deparment: ['国际文化交流学院', '复旦暑期国际项目'],
+      teach: ['ICES130053', 'ICES170004'],
     })
     .set('毛金燕', {
       deparment: ['国际文化交流学院', '复旦暑期国际项目'],
@@ -822,6 +1024,10 @@ export class PortService {
       deparment: ['大数据学院', '数学科学学院'],
       teach: ['DATA130009', 'MATH130142'],
     })
+    .set('郦旭东', {
+      deparment: ['大数据学院', '数学科学学院'],
+      teach: ['DATA130023h', 'MATH130019'],
+    })
     .set('邵美悦', {
       deparment: ['大数据学院', '数学科学学院'],
       teach: ['DATA130002', 'MATH120044'],
@@ -830,9 +1036,17 @@ export class PortService {
       deparment: ['公共卫生学院', '基础医学院'],
       teach: ['PHPM130061', 'MED130215'],
     })
+    .set('傅华', {
+      deparment: ['公共卫生学院', '基础医学院'],
+      teach: ['PHPM130086', 'MED116001'],
+    })
     .set('王帆', {
       deparment: ['公共卫生学院', '基础医学院'],
       teach: ['PHPM110059', 'MED130329'],
+    })
+    .set('杨肖光', {
+      deparment: ['公共卫生学院', '国际关系与公共事务学院'],
+      teach: ['PHPM119003', 'POLI110062'],
     })
     .set('刘宝', {
       deparment: ['公共卫生学院', '临床医学院'],
@@ -842,9 +1056,89 @@ export class PortService {
       deparment: ['临床医学院', '复旦暑期国际项目'],
       teach: ['MED170001', 'MED130136'],
     })
+    .set('吴晞', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED115004', 'MED130143'],
+    })
+    .set('曹文杰', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130143', 'MED130238'],
+    })
+    .set('郑克', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130234', 'MED130144'],
+    })
+    .set('陈莉', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130300', 'MED130220'],
+    })
+    .set('张伟伟', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130145', 'MED110060'],
+    })
+    .set('张自妍', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130143', 'MED130355'],
+    })
+    .set('白姣姣', {
+      deparment: ['临床医学院', '护理学院'],
+      teach: ['MED130355', 'NURS130061'],
+    })
+    .set('郭瑛', {
+      deparment: ['临床医学院', '护理学院'],
+      teach: ['MED110060', 'GNUR110017'],
+    })
+    .set('黄喆', {
+      deparment: ['临床医学院', '护理学院'],
+      teach: ['MED130416', 'NURS130075'],
+    })
+    .set('来小彬', {
+      deparment: ['临床医学院', '护理学院'],
+      teach: ['MED130416', 'NURS130023'],
+    })
+    .set('冯国栋', {
+      deparment: ['临床医学院', '护理学院'],
+      teach: ['MED130035', 'NURS130023'],
+    })
+    .set('王宾', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130298', 'MED116001'],
+    })
+    .set('王海燕', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130028', 'MED130309'],
+    })
+    .set('王吉耀', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130021', 'MED116001'],
+    })
+    .set('陶文其', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED110060', 'MED130078'],
+    })
+    .set('彭翔', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130143', 'MED130357'],
+    })
+    .set('徐文东', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130336'],
+    })
+    .set('李音', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130022', 'MED130144'],
+    })
+    .set('朱畴文', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130109', 'MED130329'],
+    })
     .set('张明', {
       deparment: ['临床医学院', '基础医学院'],
       teach: ['MED130143', 'MED130157'],
+    })
+    .set('卢洪洲', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130137', 'MED110001'],
     })
     .set('毛应启梁', {
       deparment: ['临床医学院', '基础医学院'],
@@ -881,6 +1175,10 @@ export class PortService {
     .set('张艳', {
       deparment: ['临床医学院', '基础医学院'],
       teach: ['MED130243', 'MED130289'],
+    })
+    .set('胡越凯', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130109', 'MED130144'],
     })
     .set('钱金凤', {
       deparment: ['临床医学院', '基础医学院'],
@@ -1050,9 +1348,33 @@ export class PortService {
       deparment: ['临床医学院', '基础医学院'],
       teach: ['MED130309', 'MED130218'],
     })
+    .set('王莉英', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130170', 'MED130309'],
+    })
     .set('龙志国', {
       deparment: ['临床医学院', '基础医学院'],
       teach: ['MED130327', 'MED130145'],
+    })
+    .set('耿道颖', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130018', 'MED116001'],
+    })
+    .set('黄国英', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130029', 'MED116001'],
+    })
+    .set('董竞成', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130020', 'MED130352'],
+    })
+    .set('钱江', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130347', 'MED130156'],
+    })
+    .set('向萌', {
+      deparment: ['临床医学院', '基础医学院'],
+      teach: ['MED130013', 'MED130158'],
     })
     .set('吴劲松', {
       deparment: ['临床医学院', '基础医学院'],
@@ -1062,9 +1384,21 @@ export class PortService {
       deparment: ['临床医学院', '基础医学院', '复旦暑期国际项目'],
       teach: ['MED130308', 'MED115002', 'MED170002'],
     })
+    .set('张斌', {
+      deparment: ['临床医学院', '护理学院'],
+      teach: ['MED130028', 'NURS130069'],
+    })
+    .set('梁亮', {
+      deparment: ['临床医学院', '护理学院'],
+      teach: ['MED130018', 'NURS110016'],
+    })
     .set('朱正飞', {
       deparment: ['临床医学院', '护理学院'],
       teach: ['MED130019', 'NURS130020'],
+    })
+    .set('沈婕', {
+      deparment: ['临床医学院', '护理学院'],
+      teach: ['MED130028', 'NURS130065'],
     })
     .set('郑莹', {
       deparment: ['临床医学院', '护理学院'],
@@ -1134,25 +1468,163 @@ export class PortService {
       deparment: ['临床医学院', '护理学院'],
       teach: ['MED130416', 'NURS130020', 'MED116001'],
     })
+    .set('沈洁', {
+      deparment: ['临床医学院', '护理学院'],
+      teach: ['MED130019', 'NURS130020'],
+    })
+    .set('程群', {
+      deparment: ['临床医学院', '护理学院'],
+      teach: ['MED130187', 'NURS130075'],
+    })
+    .set('陈萌蕾', {
+      deparment: ['临床医学院', '护理学院'],
+      teach: ['MED130019', 'NURS130075'],
+    })
     .set('戚少华', {
       deparment: ['临床医学院', '护理学院'],
       teach: ['MED130342', 'NURS110013'],
+    })
+    .set('陈嘉莹', {
+      deparment: ['临床医学院', '护理学院'],
+      teach: ['MED130225', 'NURS130068'],
     })
     .set('赵静', {
       deparment: ['临床医学院', '大学英语教学部'],
       teach: ['MED130035', 'ENGL110073'],
     })
+    .set('朱斌', {
+      deparment: ['临床医学院', '药学院'],
+      teach: ['MED130288', 'PHAR130137'],
+    })
     .set('程能能', {
       deparment: ['药学院', '临床医学院'],
       teach: ['PHAR130113', 'MED130298'],
     })
+    .set('周璐', {
+      deparment: ['药学院', '化学系'],
+      teach: ['PHAR130014', 'CHEM120011'],
+    })
+    .set('张伟', {
+      deparment: ['药学院', '化学系'],
+      teach: ['PHAR130014', 'CHEM120011'],
+    })
+    .set('丁宁', {
+      deparment: ['药学院', '化学系'],
+      teach: ['PHAR130015', 'CHEM120011'],
+    })
+    .set('达慎思', {
+      deparment: ['药学院', '化学系'],
+      teach: ['PHAR130014', 'CHEM120011'],
+    })
+    .set('楚勇', {
+      deparment: ['药学院', '化学系'],
+      teach: ['CHEM120003', 'CHEM120011'],
+    })
+    .set('古险峰', {
+      deparment: ['药学院', '化学系'],
+      teach: ['PHAR130015', 'CHEM120011'],
+    })
+    .set('王洁', {
+      deparment: ['药学院', '化学系'],
+      teach: ['PHAR130014', 'CHEM120011'],
+    })
     .set('章益涵', {
       deparment: ['新闻学院', '临床医学院', '公共卫生学院'],
       teach: ['JOUR130244'],
+    })
+    .set('陆帆', {
+      deparment: ['生命科学学院', '艺术教育中心'],
+      teach: ['BIOL130047', 'FINE110092'],
+    })
+    .set('卢大儒', {
+      deparment: ['生命科学学院', '数学科学学院'],
+      teach: ['BIOL119009', 'MATH110020'],
+    })
+    .set('薛磊', {
+      deparment: ['生命科学学院', '数学科学学院'],
+      teach: ['BIOL130039', 'MATH110020'],
+    })
+    .set('张梦翰', {
+      deparment: ['生命科学学院', '国际关系与公共事务学院'],
+      teach: ['BIOL119004', 'POLI110062'],
+    })
+    .set('俞洪波', {
+      deparment: ['生命科学学院', '信息科学与工程学院'],
+      teach: ['BIOL130039', 'INFO130346'],
+    })
+    .set('王磊', {
+      deparment: ['生命科学学院', '基础医学院'],
+      teach: ['BIOL119009', 'MED130348'],
+    })
+    .set('鲁伯埙', {
+      deparment: ['生命科学学院', '基础医学院'],
+      teach: ['BIOL130146', 'MED130406'],
+    })
+    .set('张锋', {
+      deparment: ['生命科学学院', '基础医学院'],
+      teach: ['BIOL110023', 'MED130417'],
+    })
+    .set('李士林', {
+      deparment: ['生命科学学院', '基础医学院'],
+      teach: ['BIOL119004', 'MED110004'],
     });
 
   private isConflictedName(ins: Instructor, code: string) {
     switch (ins.name) {
+      case '刘晔':
+        return ['POLI110064'].includes(code);
+      case '王磊':
+        return ['MED130221'].includes(code);
+      case '王海鹏':
+        return ['MED110060'].includes(code);
+      case '张力':
+        return ['DATA130051'].includes(code);
+      case '张松':
+        return ['TCPH130001h'].includes(code);
+      case '陶俊':
+        return ['MECH130024'].includes(code);
+      case '陈涛':
+        return ['INFO130372'].includes(code);
+      case '张鹏':
+        return ['COMP130138'].includes(code);
+      case '钱浩祺':
+        return ['POLI130212'].includes(code);
+      case '徐晓华':
+        return ['NURS130061'].includes(code);
+      case '刘铁江':
+        return ['COMP130173'].includes(code);
+      case '杨涛':
+        return ['MED130359'].includes(code);
+      case '王亮':
+        return ['COMP110045'].includes(code);
+      case '王娜':
+        return ['NURS130043'].includes(code);
+      case '陈钊':
+        return ['DATA130028'].includes(code);
+      case '徐辉':
+        return ['COMP130159'].includes(code);
+      case '李斌':
+        return ['SOFT130049'].includes(code);
+      case '凌云':
+        return ['MED130137'].includes(code);
+      case '沈杰':
+        return ['MED130187'].includes(code);
+      case '刘星':
+        return ['MED130015'].includes(code);
+      case '王放':
+        return ['BIOL130122'].includes(code);
+      case '王敏':
+        return ['MATH130001'].includes(code);
+      case '唐俊':
+        return ['JOUR130206'].includes(code);
+      case '王芳':
+        return ['SOCI110023'].includes(code);
+      case '秦枫':
+        return ['SOCI110023'].includes(code);
+      case '李伟':
+        return ['NURS110016', 'CHEM130070'].includes(code);
+      case '张新':
+        return ['MANA130359'].includes(code);
       case '刘建平':
         return ['MED130157'].includes(code);
       case '曾璇':
@@ -1302,11 +1774,11 @@ export class PortService {
       case '张奇':
         return ['COMP130123'].includes(code);
       case '张涛':
-        return ['SOSC120005'].includes(code);
+        return ['SOSC120005', 'NURS130076', 'PHPM130068'].includes(code);
       case '张华':
         return ['JOUR130050'].includes(code);
       case '张颖':
-        return ['MED110052'].includes(code);
+        return ['MED110052', 'CHEM130096h'].includes(code);
       case '王永刚':
         return ['CHEM120009'].includes(code);
       case '王志强':
@@ -1316,8 +1788,10 @@ export class PortService {
       case '李炜':
         return ['SOCI110030', 'PHYS120013'].includes(code);
       case '李楠':
-        return ['CHIN119005'].includes(code);
-    }
+        return ['CHIN119005', 'ECON130212'].includes(code);
+      case '李劲':
+        return ['MED110072'].includes(code);
+      }
   }
 
   private isInstCorrect(insts: string[], ins: Instructor, code: string) {
@@ -1403,6 +1877,12 @@ export class PortService {
             const instInfo = this.knownDuplicator.get(name);
             if (instInfo.deparment.includes(lesson.department) || instInfo.teach.includes(lesson.code)) {
               instructor.department = instInfo.deparment[0];
+            }
+            if (this.knownDup2.has(name)) {
+              const instInfo2 = this.knownDup2.get(name);
+              if (instInfo2.deparment.includes(lesson.department) || instInfo2.teach.includes(lesson.code)) { 
+                instructor.department = instInfo2.deparment[0];
+              }
             }
           }
           if (!this.isInstCorrect(Array.from(instMapper.keys()), instructor, lesson.code)) {
