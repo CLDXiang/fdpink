@@ -1,1 +1,1 @@
-export { default } from './RegisterPage.vue';
+export { default } from './RegisterPage.vue'

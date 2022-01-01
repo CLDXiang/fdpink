@@ -3,5 +3,5 @@
 </template>
 
 <script lang="ts" setup>
-import CardLayout from './CardLayout.vue';
+import CardLayout from './CardLayout.vue'
 </script>

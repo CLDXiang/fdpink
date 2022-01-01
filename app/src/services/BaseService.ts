@@ -1,9 +1,9 @@
-import { Logger } from '@/utils';
+import { Logger } from '@/utils'
 
 export default abstract class BaseService {
-  logger: Logger;
+  logger: Logger
 
   constructor(protected name: string) {
-    this.logger = new Logger(`[services/${this.name}]`);
+    this.logger = new Logger(`[services/${this.name}]`)
   }
 }
