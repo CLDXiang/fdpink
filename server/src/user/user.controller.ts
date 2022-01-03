@@ -9,6 +9,7 @@ import {
   Body,
   Inject,
   HttpStatus,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
@@ -52,7 +53,7 @@ export class UserController {
     status: HttpStatus.OK,
     type: GetUserInfoResponse,
   })
-  async getUserInfo(@Param('id') id: number) {
+  async getUserInfo(@Param('id', new ParseIntPipe()) id: number) {
     const user = await this.user.findUserById(id);
     const resp: GetUserInfoResponse = {
       id: user.id,
