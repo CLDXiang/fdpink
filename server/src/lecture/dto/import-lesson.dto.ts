@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsBoolean, IsNumber, IsString } from 'class-validator';
+import { IsArray, IsBoolean, IsNumber, IsString, Max, Min } from 'class-validator';
 
 class TimeSlot {
   @ApiProperty({
@@ -7,6 +7,8 @@ class TimeSlot {
     example: 4,
   })
   @IsNumber()
+  @Min(1, { message: '星期一' })
+  @Max(7, { message: '星期天' })
   weekDay: number;
 
   @ApiProperty({
@@ -14,6 +16,8 @@ class TimeSlot {
     example: 2,
   })
   @IsNumber()
+  @Min(1, { message: '第一节课' })
+  @Max(14, { message: '最后一节课' })
   startUnit: number;
 
   @ApiProperty({
@@ -21,6 +25,8 @@ class TimeSlot {
     example: 5,
   })
   @IsNumber()
+  @Min(1, { message: '第一节课' })
+  @Max(14, { message: '最后一节课' })
   endUnit: number;
 
   @ApiProperty({
