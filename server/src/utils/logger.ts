@@ -43,7 +43,7 @@ const prodTransports: Array<winston.transports.ConsoleTransportInstance | DailyR
 
 export const LOGGER_CONFIG = {
   level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
-  transports: process.env.NODE_ENV === 'production' ? prodTransports : devTransports,
+  transports: process.env.NODE_ENV === 'production' ? prodTransports : prodTransports,
   // other options
 };
 

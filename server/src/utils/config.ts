@@ -96,5 +96,5 @@ export const TYPEORM_CONFIG: TypeOrmModuleOptions = {
   migrations: ['dist/migrations/*{.ts,.js}'],
   migrationsRun: false,
   // uncomment the following line for debugging, it will log all sql executed by typeorm
-  logging: process.env.NODE_ENV === NodeEnv.Production ? [] : ['query', 'error'],
+  logging: process.env.NODE_ENV === NodeEnv.Production ? [] : ['error'],
 };

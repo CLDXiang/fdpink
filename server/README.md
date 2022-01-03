@@ -71,6 +71,17 @@ Danke
 
 ## 前端对接
 
+- Danke 通过 TypeORM 与数据库交互，相关配置可见 `src/utils/config.ts`。为了能正常连接数据库，请参考如下流程在本地创建用户与对应数据库并赋予相应权限。
+
+  ```
+  sudo mysql # 进入数据库
+  CREATE USER 'pink'@'localhost' IDENTIFIED BY 'password'; # 创建一个新的用户 pink，密码为 password
+  FLUSH PRIVILEGES;
+  CREATE DATABASE pink; # 创建 pink 数据库
+  GRANT ALL PRIVILEGES ON `pink` . * TO 'pink'@'localhost'; # 将 pink 数据库的所有权限开放给用户 pink
+  FLUSH PRIVILEGES;
+  ```
+
 - 当从 Github 拉下其他协作者的 commit 中有新的 migration 引入时，请通过如下方式同步数据库
 
   `yarn build && yarn typeorm migration:run` 。
