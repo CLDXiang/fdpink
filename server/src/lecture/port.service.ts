@@ -1913,14 +1913,14 @@ export class PortService {
           newInsts.push(instructor);
         }
 
-        const taughtBy = [...instSet].sort().join('@@');
+        const taughtBy = [...instSet].sort().join(',');
 
         const convertedLesson = new Lesson();
         convertedLesson.id = lesson.id;
         convertedLesson.code = lesson.code;
         convertedLesson.codeFull = lesson.no;
         convertedLesson.semester = lesson.semester;
-        convertedLesson.taughtBy = taughtBy;
+        convertedLesson.teachers = taughtBy;
         convertedLesson.name = lesson.name;
         convertedLesson.credit = lesson.credits;
         convertedLesson.department = lesson.department;
@@ -1942,15 +1942,15 @@ export class PortService {
         }
         const lects = lectMapper.get(lesson.code);
         const newLects = newLectMapper.get(lesson.code);
-        const idx = lects.findIndex((v) => v.taughtBy.toString().toLowerCase() === taughtBy.toLowerCase());
-        const newIdx = newLects.findIndex((v) => v.taughtBy.toString().toLowerCase() === taughtBy.toLowerCase());
+        const idx = lects.findIndex((v) => v.teachers.toString().toLowerCase() === taughtBy.toLowerCase());
+        const newIdx = newLects.findIndex((v) => v.teachers.toString().toLowerCase() === taughtBy.toLowerCase());
         if (idx === -1) {
           // 全新的课程
           totalLect += 1;
           const newLect = new Lecture();
           newLect.id = totalLect;
           newLect.code = lesson.code;
-          newLect.taughtBy = taughtBy;
+          newLect.teachers = taughtBy;
           newLect.name = lesson.name;
           newLect.category = lesson.category;
           newLect.semester = semester;
@@ -1973,7 +1973,7 @@ export class PortService {
           if (newIdx === -1) {
             // 这学期没有的课程
             const lect = lects[idx];
-            lect.semester += `,${semester}`;
+            lect.semester = `${semester},` + lect.semester;
             newLects.push(lect);
             newLectMapper.set(lect.code, newLects);
             updatedLects.push(lect);

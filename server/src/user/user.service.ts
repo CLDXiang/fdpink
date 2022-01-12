@@ -6,11 +6,15 @@ import { PatchUserInfoRequest } from './dto/user-info.patch.request';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 import { Logger } from 'winston';
 import { QueryError } from '../storage/constant';
+import { Rate } from 'src/entities/rate';
+import { RateInfoResponse } from 'src/rate/dto/rate-info.get.response';
+import { RATE_FIELDS } from 'src/rate/rate.service';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRepo: Repository<User>,
+    @InjectRepository(Rate) private readonly rateRepo: Repository<Rate>,
     @Inject(WINSTON_MODULE_NEST_PROVIDER) private readonly loggerService: Logger,
   ) {}
 
@@ -30,6 +34,23 @@ export class UserService {
       [user] = results;
     }
     return user;
+  }
+
+  async getNextPagedRatesByUserId(userId: number, limit: number, lastId: number): Promise<RateInfoResponse[]> {
+    const sql = `
+    SELECT rawrate.id, rawrate.createdAt, rawrate.updatedAt, rawrate.semester, rawrate.category, rawrate.form,
+      JSON_OBJECT('id', lecture.id, 'name', lecture.name, 'teachers', lecture.teachers, 'category', lecture.category) AS lecture
+    FROM (SELECT ${RATE_FIELDS}
+          FROM rate
+          WHERE user_id = ?
+            AND rate.id < ?
+            AND is_deleted = FALSE
+          ORDER BY rate.id DESC
+          LIMIT ?) AS rawrate
+    LEFT JOIN user ON rawrate.user_id = user.id
+    LEFT JOIN lecture ON lecture_id = lecture.id
+    `;
+    return this.rateRepo.manager.query(sql, [userId, lastId, limit]);
   }
 
   async findUserById(userId: number): Promise<User> {

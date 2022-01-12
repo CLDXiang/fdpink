@@ -1,5 +1,11 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 
+export enum DeletedBy {
+  Self = '用户本人删除',
+  Manager = '管理员删除',
+  Alive = '正常',
+}
+
 @Index('idx_lecture_id_user_id', ['lectureId', 'userId'], {})
 @Index('idx_user_id', ['userId'], {})
 @Entity('rate')
@@ -34,6 +40,9 @@ export class Rate {
   })
   isEdited: boolean | null;
 
+  @Column('varchar', { name: 'category', nullable: false, length: 32 })
+  category: string;
+
   @Column('tinyint', {
     name: 'is_deleted',
     nullable: true,
@@ -42,8 +51,11 @@ export class Rate {
   })
   isDeleted: boolean | null;
 
-  @Column('varchar', { name: 'deleted_by', nullable: true, length: 100 })
-  deletedBy: string | null;
+  @Column('varchar', { name: 'semester', nullable: false, length: 10 })
+  semester: string;
+
+  @Column({ type: 'enum', enum: DeletedBy, name: 'deleted_by', nullable: false, default: DeletedBy.Alive })
+  deletedBy: DeletedBy;
 
   @Column('int', { name: 'difficulty', nullable: true })
   difficulty: number | null;

@@ -88,3 +88,5 @@ Danke
 
 - 目前后端引入了 swagger 用以替代 Swagger 和 mock，`yarn start:dev` 启动项目后，可在 http://localhost:3000/api/#/ 访问。
 
+- 请在 `dev` 模式下进行前后端对接，当注册新的用户而需要验证时，可以直接通过邮箱验证实现，验证码会在后台明文展示，`dev` 模式下不会真的发送验证码。
+

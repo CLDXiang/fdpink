@@ -9,6 +9,7 @@ import { TYPEORM_CONFIG } from './utils/config';
 import { WinstonModule } from 'nest-winston';
 import { LOGGER_CONFIG } from './utils/logger';
 import { LectureModule } from './lecture/lecture.module';
+import { RateModule } from './rate/rate.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { LectureModule } from './lecture/lecture.module';
     AuthModule,
     UserModule,
     MailModule,
+    RateModule,
     LectureModule,
   ],
   controllers: [AppController],

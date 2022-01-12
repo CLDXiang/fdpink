@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, Index, PrimaryColumn } from 'typeorm';
 
+@Index('idx_lecture_id', ['lectureId'])
 @Entity('teach_lecture')
 export class TeachLecture {
   @PrimaryColumn({ type: 'int', name: 'instructor_id' })

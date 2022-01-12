@@ -6,12 +6,14 @@ import { Instructor } from '../entities/instructor';
 import { Lesson } from '../entities/lesson';
 import { Lecture } from '../entities/lecture';
 import { TeachLecture } from '../entities/teach_lecture';
+import { RateModule } from '../rate/rate.module';
+import { LectureService } from './lecture.service';
+import { Rate } from 'src/entities/rate';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Instructor, Lesson, Lecture, TeachLecture], 'default')],
+  imports: [TypeOrmModule.forFeature([Instructor, Lesson, Lecture, TeachLecture, Rate], 'default'), RateModule],
   controllers: [LectureController],
-  providers: [PortService],
-  // providers: [UserService, StorageService, FileService],
+  providers: [PortService, LectureService],
   exports: [PortService, TypeOrmModule],
 })
 export class LectureModule {}

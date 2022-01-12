@@ -8,7 +8,7 @@ interface TimeSlot {
   weekStateDigest: string;
 }
 
-@Index('idx_code_taught_by', ['code', 'taughtBy'], {})
+@Index('idx_code_taught_by', ['code', 'teachers'], {})
 @Entity('lesson')
 export class Lesson {
   @PrimaryColumn({ type: 'int', name: 'id' })
@@ -41,8 +41,8 @@ export class Lesson {
   @Column('varchar', { name: 'category', nullable: false, length: 32 })
   category: string;
 
-  @Column('varchar', { name: 'taught_by', nullable: true, length: 512 })
-  taughtBy: string | null;
+  @Column('varchar', { name: 'teachers', nullable: true, length: 512 })
+  teachers: string | null;
 
   @Column('varchar', { name: 'name', nullable: false, length: 128 })
   name: string;
