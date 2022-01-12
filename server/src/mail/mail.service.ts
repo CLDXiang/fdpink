@@ -9,6 +9,7 @@ import { Queue } from 'bull';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 import { Logger } from 'winston';
 import { SucceedDto } from '../auth/dto/succeed.dto';
+import { MAIL_VERIFICATION_ENABLED } from '../utils/config';
 
 // MAX_PENDING_INTERVAL defines the maximum time interval (in seconds) a verification request could be satisfied
 export const MAX_PENDING_INTERVAL = 60 * 60;
@@ -76,10 +77,12 @@ export class MailService {
       this.loggerService.warn(`${mailAddr} request too many verification`);
       throw new TooManyRequestsException('该邮箱地址申请了太多验证码，请检查邮箱或者耐心等待');
     }
-    const numWaiting = await this.queue.getWaitingCount();
-    if (numWaiting > MAX_WAITING_LIMIT) {
-      this.loggerService.warn(`mailer queue is very busy`);
-      throw new TooManyRequestsException('邮件系统繁忙中，请稍后再试');
+    if (MAIL_VERIFICATION_ENABLED) {
+      const numWaiting = await this.queue.getWaitingCount();
+      if (numWaiting > MAX_WAITING_LIMIT) {
+        this.loggerService.warn(`mailer queue is very busy`);
+        throw new TooManyRequestsException('邮件系统繁忙中，请稍后再试');
+      }
     }
     const mail = new Mail();
     mail.code = generateCode();
@@ -94,13 +97,16 @@ export class MailService {
       code: mail.code,
       receiver: mailAddr,
     };
-    await this.queue.add(job, {
-      removeOnComplete: true,
-      removeOnFail: false,
-      backoff: { type: 'exponential' },
-      attempts: 5,
-    });
-    const cnt = await this.queue.getJobCounts();
+    let cnt;
+    if (MAIL_VERIFICATION_ENABLED) {
+      await this.queue.add(job, {
+        removeOnComplete: true,
+        removeOnFail: false,
+        backoff: { type: 'exponential' },
+        attempts: 5,
+      });
+      cnt = await this.queue.getJobCounts();
+    }
     this.loggerService.debug(`requestVerification: job has been enqueued, ${JSON.stringify(cnt)} in queue`);
     return { message: '验证码已发送至您的邮箱中请注意查收' } as SucceedDto;
   }

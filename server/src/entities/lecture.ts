@@ -1,6 +1,6 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 
-@Index('uk_code_taught_by', ['code', 'taughtBy'], { unique: true })
+@Index('uk_code_taught_by', ['code', 'teachers'], { unique: true })
 @Index('idx_category', ['category'])
 @Entity('lecture')
 export class Lecture {
@@ -23,8 +23,8 @@ export class Lecture {
   @Column('varchar', { name: 'code', nullable: false, length: 15 })
   code: string;
 
-  @Column('varchar', { name: 'taught_by', nullable: true, length: 512 })
-  taughtBy: string | null;
+  @Column('varchar', { name: 'teachers', nullable: true, length: 512 })
+  teachers: string | null;
 
   @Column('varchar', { name: 'name', nullable: false, length: 128 })
   name: string;

@@ -10,14 +10,17 @@ import {
   Inject,
   HttpStatus,
   ParseIntPipe,
+  Query,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { GetUserInfoResponse } from './dto/user-info.get.response';
 import { PatchUserInfoRequest } from './dto/user-info.patch.request';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 import { Logger } from 'winston';
+import { RateInfoResponse } from '../rate/dto/rate-info.get.response';
+import { PAGE_LIMIT } from 'src/utils/config';
 
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth('JWT')
@@ -29,22 +32,28 @@ export class UserController {
     @Inject(WINSTON_MODULE_NEST_PROVIDER) private readonly loggerService: Logger,
   ) {}
 
-  @Get()
-  @ApiOperation({ summary: '获取用户个人信息（本人）' })
+  @Get('rates/:userId')
+  @ApiQuery({ name: 'limit', description: '分页大小', required: false })
+  @ApiQuery({ name: 'last_id', description: '分页起始', required: false })
+  @ApiOperation({ summary: '获取用户评课记录' })
   @ApiResponse({
     status: HttpStatus.OK,
-    type: GetUserInfoResponse,
+    type: [RateInfoResponse],
   })
-  async getSelfUserInfo(@Req() req) {
-    const user = await this.user.findUserById(req.user.id);
-    const resp: GetUserInfoResponse = {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      nickname: user.nickName,
-      bio: user.bio,
-    };
-    return resp;
+  async getNextPagedRatesByUserId(
+    @Param('userId', new ParseIntPipe()) userId: number,
+    @Query('limit') reqLimit?: number,
+    @Query('last_id') reqLastId?: number,
+  ) {
+    let limit = PAGE_LIMIT;
+    if (reqLimit !== undefined) {
+      limit = Math.min(reqLimit, limit);
+    }
+    let lastId = reqLastId;
+    if (lastId === undefined) {
+      lastId = Number.MAX_SAFE_INTEGER;
+    }
+    return this.user.getNextPagedRatesByUserId(userId, limit, lastId);
   }
 
   @Get(':id')
@@ -81,6 +90,24 @@ export class UserController {
     @Req() req,
   ): Promise<GetUserInfoResponse> {
     const user = await this.user.modifyUserInfo(req.user.id, patchReq);
+    const resp: GetUserInfoResponse = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      nickname: user.nickName,
+      bio: user.bio,
+    };
+    return resp;
+  }
+
+  @Get()
+  @ApiOperation({ summary: '获取用户个人信息（本人）' })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: GetUserInfoResponse,
+  })
+  async getSelfUserInfo(@Req() req) {
+    const user = await this.user.findUserById(req.user.id);
     const resp: GetUserInfoResponse = {
       id: user.id,
       name: user.name,

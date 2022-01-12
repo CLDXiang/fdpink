@@ -40,6 +40,9 @@ export class Rate {
   })
   isEdited: boolean | null;
 
+  @Column('varchar', { name: 'category', nullable: false, length: 32 })
+  category: string;
+
   @Column('tinyint', {
     name: 'is_deleted',
     nullable: true,
